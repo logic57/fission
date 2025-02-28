@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模特图制作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: #666;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 61px); /* 减去header高度 */
+        }
+        
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border-right: 1px solid #e0e0e0;
+            padding: 20px;
+        }
+        
+        /* 中间操作区 */
+        .main-content {
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            margin: 0 1px;
+            overflow-y: auto;
+        }
+        
+        /* 右侧预览区 */
+        .preview-area {
+            width: 50%;
+            background-color: #fff;
+            border-left: 1px solid #e0e0e0;
+            padding: 20px;
+        }
+        
+        /* 基础布局占位 */
+        .placeholder {
+            width: 100%;
+            height: 100px;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        /* 功能卡片样式 */
+        .function-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .function-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .function-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .function-card-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .function-card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .function-card-content {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fafafa;
+            margin-bottom: 16px;
+        }
+
+        .upload-area:hover {
+            border-color: #1890ff;
+            background-color: #f0f7ff;
+        }
+
+        /* 图片张数选择样式 */
+        .image-count-selector {
+            margin-bottom: 16px;
+        }
+
+        .image-count-selector h3 {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .count-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .count-button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background: #fff;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .count-button:hover {
+            border-color: #1890ff;
+            color: #1890ff;
+        }
+
+        .count-button.active {
+            background: #1890ff;
+            color: #fff;
+            border-color: #1890ff;
+        }
+
+        /* 生成按钮样式 */
+        .generate-button {
+            width: 100%;
+            padding: 12px 20px;
+            background: #1890ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .generate-button:hover {
+            background: #40a9ff;
+        }
+
+        .generate-button:active {
+            background: #096dd9;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countButtons = document.querySelectorAll('.count-button');
+            
+            countButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    countButtons.forEach(btn => btn.classList.remove('active'));
+                    // 为当前点击的按钮添加active类
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo">模特图制作</div>
+        <nav class="nav-menu">
+            <a href="#">首页</a>
+            <a href="#">项目</a>
+            <a href="#">设置</a>
+            <a href="#">帮助</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <div class="placeholder">左侧导航区域</div>
+        </div>
+        
+        <!-- 中间操作区 -->
+        <div class="main-content">
+            <button class="generate-button">
+                <span>✨</span>
+                开始生成
+            </button>
+            <div class="upload-area">
+                <div class="function-card-icon">📤</div>
+                <div class="function-card-title">点击上传图片</div>
+                <div class="function-card-content">支持上传多张图片，每张大小不超过20MB</div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-card-header">
+                    <div class="function-card-icon">👤</div>
+                    <div class="function-card-title">模特</div>
+                </div>
+                <div class="function-card-content">头像及代表模特的实型和性别</div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-card-header">
+                    <div class="function-card-icon">🏰</div>
+                    <div class="function-card-title">场景</div>
+                </div>
+                <div class="function-card-content">模特所处地点和周边环境</div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-card-header">
+                    <div class="function-card-icon">😊</div>
+                    <div class="function-card-title">面部表情</div>
+                </div>
+                <div class="function-card-content">生成的模特面部表情</div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-card-header">
+                    <div class="function-card-icon">🎭</div>
+                    <div class="function-card-title">模特穿搭</div>
+                </div>
+                <div class="function-card-content">控制模特的穿搭</div>
+            </div>
+
+            <div class="image-count-selector">
+                <h3>选择生成张数</h3>
+                <div class="count-buttons">
+                    <button class="count-button active">1</button>
+                    <button class="count-button">2</button>
+                    <button class="count-button">3</button>
+                    <button class="count-button">4</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧预览区 -->
+        <div class="preview-area">
+            <div class="placeholder">右侧预览区域</div>
+        </div>
+    </div>
+</body>
+</html>
