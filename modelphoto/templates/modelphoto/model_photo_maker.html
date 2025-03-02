@@ -19,35 +19,284 @@
         /* 顶部导航栏 */
         .header {
             background-color: #fff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 15px 20px;
+            border-bottom: 1px solid #ebeef5;
+            padding: 0 48px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+            position: relative;
+            z-index: 100;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 20px;
             font-weight: bold;
-            color: #333;
+            color: #1AB8B6;
+            text-decoration: none;
+            height: 100%;
+            padding: 0 12px;
         }
-
+        .logo img {
+            height: 24px;
+        }
         .nav-menu {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 8px;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            height: 100%;
         }
-
+        
         .nav-menu a {
-            color: #666;
+            color: #4e5969;
             text-decoration: none;
-            padding: 5px 10px;
+            padding: 0 16px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 400;
+            position: relative;
+            height: 64px;
+            line-height: 64px;
+        }
+        
+        .nav-menu a:hover {
+            color: #1AB8B6;
+            background-color: transparent;
+        }
+        
+        .nav-menu .btn-premium {
+            background-color: #1AB8B6;
+            color: #fff;
+            padding: 10px 20px;
             border-radius: 4px;
-            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(26, 184, 182, 0.15);
+            transition: all 0.2s ease;
+        }
+        
+        .nav-menu .btn-premium:hover {
+            background-color: #15a3a1;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(26, 184, 182, 0.16);
+        }
+        .nav-menu .dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-menu .dropdown::after {
+            content: '▼';
+            font-size: 10px;
+            margin-left: 4px;
+            color: #4e5969;
+        }
+        .nav-menu .dropdown:hover::after {
+            color: #1AB8B6;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            display: none;
+            z-index: 1000;
         }
 
-        .nav-menu a:hover {
+        .user-info {
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 16px;
+        }
+
+        .user-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             background-color: #f0f0f0;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-phone {
+            font-size: 16px;
             color: #333;
+            margin-bottom: 4px;
+        }
+
+        .user-id {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .team-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .version-info {
+            margin: 12px 0;
+            padding: 8px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .version-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .resource-info {
+            margin-bottom: 8px;
+        }
+
+        .resource-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .resource-progress {
+            color: #1890ff;
+        }
+
+        .upgrade-tip {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .upgrade-button {
+            width: 100%;
+            padding: 8px;
+            background-color: #1890ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .upgrade-button .star {
+            color: #ffd700;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #f5f5f5;
+            color: #1890ff;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: #4e5969;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.5;
+            height: auto;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: #1AB8B6;
+        }
+        .nav-menu .btn-premium {
+            background-color: #1AB8B6;
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 32px;
+            line-height: 32px;
+            margin: 16px 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-menu .btn-premium .star {
+            color: #ffd700;
+        }
+        .nav-menu .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .free-credits {
+            color: #ff4d4f;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .support-btn {
+            color: #52c41a;
         }
         .container {
             display: flex;
@@ -433,12 +682,71 @@
 <body>
     <!-- 顶部导航栏 -->
     <header class="header">
-        <div class="logo">模特图制作</div>
+        <a href="#" class="logo">
+            
+            Fission AI
+        </a>
         <nav class="nav-menu">
             <a href="#">首页</a>
-            <a href="#">项目</a>
-            <a href="#">设置</a>
-            <a href="#">帮助</a>
+            <a href="#">模特图</a>
+            <a href="#">商品背景图</a>
+            <a href="#">POD素材</a>
+            <a href="#">商品图设计</a>
+            <a href="#">AI视频</a>
+            <a href="#" class="dropdown">图片处理</a>
+            <a href="#" class="dropdown">更多</a>
+            <a href="#">教程</a>
+            <a href="#" class="free-credits">领取更多免费次数</a>
+            <a href="#" class="support-btn">售后咨询</a>
+            <a href="#" class="btn-premium">
+                <span class="star">★</span>
+                购买套餐
+            </a>
+            <div class="dropdown">
+                <div class="avatar">👤</div>
+                <div class="dropdown-menu">
+                    <div class="user-info">
+                        <div class="user-header">
+                            <div class="user-avatar">👤</div>
+                            <div class="user-details">
+                                <div class="user-phone">175****6657</div>
+                                <div class="user-id">用户 6657</div>
+                            </div>
+                        </div>
+                        <div class="team-switch">
+                            <span>切换团队</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                    <div class="version-info">
+                        <div class="version-tag">免费版</div>
+                        <div class="resource-info">
+                            <div class="resource-item">
+                                <span>算力（每月更新）</span>
+                                <span class="resource-progress">0/50</span>
+                            </div>
+                            <div class="resource-item">
+                                <span>作图体验点（每月更新）</span>
+                                <span class="resource-progress">0/200</span>
+                            </div>
+                        </div>
+                        <div class="upgrade-tip">购买套餐获得更多算力，解锁更多权益</div>
+                        <button class="upgrade-button">
+                            <span class="star">⭐</span>
+                            立即购买套餐
+                        </button>
+                    </div>
+                    <div class="menu-list">
+                        <a href="#" class="menu-item">创建团队</a>
+                        <a href="#" class="menu-item">前往官网</a>
+                        <a href="#" class="menu-item">购买套餐</a>
+                        <a href="#" class="menu-item">个人设置</a>
+                        <a href="#" class="menu-item">订单中心</a>
+                        <a href="#" class="menu-item">重置密码</a>
+                        <a href="#" class="menu-item">退出登录</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 

@@ -20,5 +20,5 @@ from modelphoto import views as modelphoto_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('modelphoto/', modelphoto_views.model_photo_maker, name='model_photo_maker'),
+    path('model_photo_maker/', modelphoto_views.model_photo_maker, name='model_photo_maker'),
 ]
